@@ -1,0 +1,17 @@
+apiVersion: build.dev/v1alpha1
+kind: Build
+metadata:
+  name: s2i-nodejs-build
+spec:
+  source:
+    url: https://github.com/adambkaplan/shipwright-example-nodejs.git
+  strategy:
+    name: source-to-image
+    kind: ClusterBuildStrategy
+  builder:
+    image: docker.io/centos/nodejs-12-centos7
+  output:
+    image: quay.io/adambkaplan/shipwright-nodejs-buildah:latest
+    credentials:
+      name: push-secret
+  

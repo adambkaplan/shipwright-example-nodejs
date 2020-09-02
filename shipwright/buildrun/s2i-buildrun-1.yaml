@@ -1,0 +1,9 @@
+apiVersion: build.dev/v1alpha1
+kind: BuildRun
+metadata:
+  name: s2i-nodejs-build-1
+spec:
+  buildRef:
+    name: s2i-nodejs-build
+  serviceAccount:
+    name: builder

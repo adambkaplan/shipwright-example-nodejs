@@ -1,0 +1,14 @@
+apiVersion: build.dev/v1alpha1
+kind: Build
+metadata:
+  name: buildpack-nodejs-build
+spec:
+  source:
+    url: https://github.com/adambkaplan/shipwright-example-nodejs.git
+  strategy:
+    name: buildpacks-v3
+    kind: ClusterBuildStrategy
+  output:
+    image: quay.io/adambkaplan/shipwright-nodejs-buildpack:latest
+    credentials:
+      name: push-secret

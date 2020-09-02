@@ -1,0 +1,15 @@
+apiVersion: build.dev/v1alpha1
+kind: Build
+metadata:
+  name: kaniko-nodejs-build
+spec:
+  source:
+    url: https://github.com/adambkaplan/shipwright-example-nodejs.git
+  strategy:
+    name: kaniko
+    kind: ClusterBuildStrategy
+  dockerfile: Dockerfile
+  output:
+    image: quay.io/adambkaplan/shipwright-nodejs-kaniko:latest
+    credentials:
+      name: push-secret
