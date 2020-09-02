@@ -1,0 +1,13 @@
+{
+  "name": "example-nodejs",
+  "version": "0.0.1",
+  "description": "Sample NodeJS application that can be built with Shipwright",
+  "main": "index.js",
+  "repository": "https://github.com/shipwright-io/example-nodejs.git",
+  "author": "The Shipwright Contributors",
+  "license": "Apache-2.0",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
