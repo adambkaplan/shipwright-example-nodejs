@@ -13,18 +13,15 @@ container registry.
 
 ## Prerequisites
 
-Before you begin, do the following:
+Before you begin, make sure you have the following:
 
-1. Install Shipwright on your Kubernetes cluster.
-2. Create a new namespace to run your builds:
+1. git installed on your computer
+2. kubectl or equivalent k8s command line.
+3. A kubernetes cluster that you have access to.
 
-```
-$ kubectl create namespace example-nodejs
-$ kubectl config set-context --current --namespace=example-nodejs
-```
+## Setup
 
-3. Install the Tekton CLI on your computer.
-4. Clone this repository to your computer:
+1. Clone this repository to your computer:
 
 ```
 $ git clone https://github.com/adambkaplan/shipwright-example-nodejs.git
@@ -32,10 +29,31 @@ $ git clone https://github.com/adambkaplan/shipwright-example-nodejs.git
 $ cd shipwright-example-nodejs
 ```
 
+2. Install Shipwright on your Kubernetes cluster:
+
+```
+$ hack/install-shipwright.sh
+```
+
+If installing on OpenShift, add `openshift` as the first targument:
+
+```
+$ hack/install-shipwright.sh openshift
+```
+
+3. Create a new namespace to run your builds:
+
+```
+$ kubectl create namespace example-nodejs
+$ kubectl config set-context --current --namespace=example-nodejs
+```
+
 ## Add your push secret
 
 In your namespace, create a `Secret` which contains your credentials to push the container image to
-a container registry:
+a container registry.
+
+If you have a push secret stored in a docker `config.json` file, create the following secret:
 
 ```
 $ kubectl create secret generic push-secret \
@@ -61,6 +79,12 @@ default:
 $ kubectl apply -f shipwright/buildrun/buildah-buildrun-1.yaml
 ...
 $ kubectl get buildrun buildah-nodejs-build-1
+```
+
+After the `Build` completes, you can can view the logs:
+
+```
+$ kubectl logs -l buildrun.build.dev/name=buildah-nodejs-build-1 --all-containers
 ```
 
 ## Try Other Build Strategies
