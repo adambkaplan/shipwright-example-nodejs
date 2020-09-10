@@ -6,4 +6,4 @@ spec:
   buildRef:
     name: s2i-nodejs-build
   serviceAccount:
-    name: builder
+    name: default
