@@ -13,8 +13,8 @@ git clone https://github.com/shipwright-io/build.git
 pushd build
 
 echo "Installing Shipwright and Tekton..."
-hack/install-tekton.sh ${PLATFORM}
-hack/crd.sh install
+hack/install-tekton.sh
+hack/shipwright-build.sh install
 
 popd
 popd
