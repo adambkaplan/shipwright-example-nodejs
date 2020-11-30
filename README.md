@@ -23,30 +23,27 @@ Before you begin, make sure you have the following:
 
 1. Clone this repository to your computer:
 
-```
-$ git clone https://github.com/adambkaplan/shipwright-example-nodejs.git
-...
-$ cd shipwright-example-nodejs
-```
+   ```
+   $ git clone https://github.com/adambkaplan/shipwright-example-nodejs.git
+   ...
+   $ cd shipwright-example-nodejs
+   ```
 
 2. Install Shipwright on your Kubernetes cluster:
 
-```
-$ hack/install-shipwright.sh
-```
+   - Use the install script in this repostiory
 
-If installing on OpenShift, add `openshift` as the first targument:
-
-```
-$ hack/install-shipwright.sh openshift
-```
+      ```bash
+      $ hack/install-shipwright.sh
+      ``` 
+   - Install via OLM and [OperatorHub](https://operatorhub.io/operator/shipwright-operator)
 
 3. Create a new namespace to run your builds:
 
-```
-$ kubectl create namespace example-nodejs
-$ kubectl config set-context --current --namespace=example-nodejs
-```
+   ```
+   $ kubectl create namespace example-nodejs
+   $ kubectl config set-context --current --namespace=example-nodejs
+   ```
 
 ## Add your push secret
 
